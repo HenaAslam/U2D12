@@ -6,31 +6,20 @@ const options = {
 	}
 };
 
- const renderImages=(fetchedImages)=>{
-   
-    let cards=document.querySelectorAll('.card')
-    let svgs=document.querySelectorAll('.card svg')
-
-    
-    for(i=0;i<cards.length;i++){
-       let imgNode= document.createElement('img')
-       imgNode.src=`${fetchedImages[i].src.large}`
-
-         let card=cards[i];
-         card.replaceChild(imgNode,svgs[i])
-         //card.replaceChild(`<img src="${fetchedImages[i].src.large}" alt="">`,svgs[i])
- 
-         // card.innerHTML=""
-        // card.innerHTML+=`<img src="${fetchedImages[i].src.large}" alt="">`
-
-        //  let newNode=document.createElement('div')
-        //  newNode.style.height='100px'
-        //  newNode.innerHTML=`<img src="${fetchedImages[i].src.large}" alt="">`
-        
-        //  card.parentNode.replaceChild(newNode, card);
-
+const renderImages=(fetchedImages)=>{
+    let cards = document.getElementsByClassName("card");
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].firstElementChild.remove(); 
+        let img = document.createElement("img");
+        img.src = fetchedImages[i].src.large;
+        //img.className = "bd-placeholder-img card-img-top";
+        img.style = "height: 200px; object-fit: cover";
+        cards[i].insertBefore(img, cards[i].firstChild);
+    }
 }
- }
+
+   
+
 
 const idofImages=(fetchedImages)=>{
     let strings=document.querySelectorAll('body > main > div > div > div > div > div > div > div > small')
@@ -86,7 +75,7 @@ function hideCard(){
         btn.addEventListener("click",function(){
          
                
-                card.style.visibility="hidden"
+                card.style.display="none"
             
             
            
@@ -95,12 +84,58 @@ function hideCard(){
 }
 hideCard()
 
-// function searchField(){
-//     let btn=document.getElementById('button-addon1')
-//     let val=document.getElementById('inp').value
-//     console.log(val)
-//     btn.addEventListener("click",fetchImages(val))
+
+// const handleSearchQuery = (e) => {
+//     searchQuery = e.target.value.toLowerCase();
+//     return searchQuery
+//     //console.log(searchQuery)
+//   };
+
+  
+  function searchImages(){
+    let searchquery=document.getElementById('inp').value
+        fetchImages(searchquery)
+  }
 
 
-// }
-// searchField()
+
+  function modalView(){
+   
+    let btns=document.querySelectorAll('body > main > div > div > div > div > div > div > div > div > button:nth-child(1)')
+    let cards=document.querySelectorAll('.card')
+    for(i=0;i<btns.length;i++){
+                let btn=btns[i]
+                let card=cards[i]
+               
+                btn.setAttribute("data-toggle", "modal");
+                btn.setAttribute("data-target", "#exampleModal");
+                btn.addEventListener("click",function(){
+                    let modal = document.querySelector(".modal-body");
+                    modal.innerHTML=""
+                        cardImage=card.firstElementChild
+                       
+                        let image = document.createElement("img");
+                        image.className = "img-fluid w-100"
+                        console.log(cardImage)
+                        image.src=cardImage.src
+                         modal.appendChild(image)
+                })
+            }
+  
+
+  }
+  
+  modalView()
+
+
+
+function carousel(){
+    let carouselNode=document.getElementById('appendcarousel')
+    for(let i=0;i<20;i++){
+
+        
+        carouselNode.innerHTML+=` <div class="carousel-item active">
+        <img src="" class="d-block w-100" alt="...">
+      </div>`
+    }
+}
