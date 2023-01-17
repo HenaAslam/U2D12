@@ -190,13 +190,19 @@
       <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">Album API example</h1>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon1">Search</button>
+            </div>
+            <input type="text" id="inp" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+          </div>
           <p class="lead text-muted">
             This page will dynamically load pictures from the web, and display
             them in a cool way!
           </p>
           <p>
-            <a href="#" class="btn btn-primary my-2" id="loadimg">Load Images</a>
-            <a href="#" class="btn btn-secondary my-2">Load Secondary Images</a>
+            <a href="#" class="btn btn-primary my-2"  onclick="fetchImages('christmas')">Load Images</a>
+            <a href="#" class="btn btn-secondary my-2" onclick="fetchImages('javascript')">Load Secondary Images</a>
           </p>
         </div>
       </section>
@@ -206,7 +212,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
-                
+               
                 <svg
                   class="bd-placeholder-img card-img-top"
                   width="100%"
@@ -217,12 +223,14 @@
                   role="img"
                   aria-label="Placeholder: Thumbnail"
                 >
+           
                   <title>Placeholder</title>
                   <rect width="100%" height="100%" fill="#55595c" />
                   <text x="50%" y="50%" fill="#eceeef" dy=".3em">
                     Thumbnail
                   </text>
                 </svg>
+            
                 <div class="card-body">
                   <p class="card-text">
                     This is a wider card with supporting text below as a natural
