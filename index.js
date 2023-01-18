@@ -141,8 +141,10 @@ hideCard()
                 for(i=0;i<data.length;i++){
                     let cardImage=data[i].src.large
                     console.log(cardImage)
-                    carouselNode.innerHTML+=`<div class="carousel-item active">
-                    <img src="${cardImage}" class="d-block w-100 " alt="..." style="height:200px">
+                    carouselNode.innerHTML+=`<div class="carousel-item ${
+                        i === 0 ? "active" : ""
+                      }">
+                    <img src="${cardImage}" class="d-block w-100 " alt="..." >
                   </div>`
                 }
             })
@@ -151,5 +153,9 @@ hideCard()
   }
   carousel()
 
-//   let img = document.createElement("img");
-//   img.src = fetchedImages[i].src.large;
+//   <div class="carousel-item >
+//               <img src="${
+//                 cardImage.src.landscape
+//               }" class="d-block w-100 " alt="..." style="height:200px">
+//             </div>
+//   carousel()
