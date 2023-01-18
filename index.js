@@ -42,8 +42,7 @@ function fetchImages(search){
        let data=jsonimgs.photos
         renderImages(data)
         idofImages(data)
-
-
+        
     })
     .catch(err=>console.log(err))
 
@@ -127,15 +126,30 @@ hideCard()
   
   modalView()
 
-
-
-function carousel(){
+  function carousel(forest){
     let carouselNode=document.getElementById('appendcarousel')
-    for(let i=0;i<20;i++){
+    fetch(`https://api.pexels.com/v1/search?query=forest`,options)
+    .then((res)=>{
+              
+                return res.json()
+              
+            })
+            .then((jsonimgs)=>{
+          
+               let data=jsonimgs.photos
+                //console.log(data)
+                for(i=0;i<data.length;i++){
+                    let cardImage=data[i].src.large
+                    console.log(cardImage)
+                    carouselNode.innerHTML+=`<div class="carousel-item active">
+                    <img src="${cardImage}" class="d-block w-100 " alt="..." style="height:200px">
+                  </div>`
+                }
+            })
+            .catch(err=>console.log(err))
+   
+  }
+  carousel()
 
-        
-        carouselNode.innerHTML+=` <div class="carousel-item active">
-        <img src="" class="d-block w-100" alt="...">
-      </div>`
-    }
-}
+//   let img = document.createElement("img");
+//   img.src = fetchedImages[i].src.large;
